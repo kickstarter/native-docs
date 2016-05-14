@@ -38,9 +38,9 @@ internal final class ViewModel: ViewModelType, ViewModelInputs, ViewModelOutputs
   // Constructor of the view model at the top.
   
   internal init() {
-   // Assign all outputs in terms of the inputs
+    // Assign all outputs in terms of the inputs
    
-   self.creatorName = self.projectProperty.ignoreNil().map { $0.creator.name }
+    self.creatorName = self.projectProperty.ignoreNil().map { $0.creator.name }
   }
   
   // Implementation of interfaces at the bottom of the view model.
