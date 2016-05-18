@@ -1,5 +1,6 @@
 There is a standard template we use for our view models in both Java and Swift. This helps
-use not worry about stylistc considerations, so as where certain methods are placed.
+use not worry about stylistc decisions and have a well-defined place to put protocols,
+methods, etc.
 
 ## Java
 
