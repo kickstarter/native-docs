@@ -76,5 +76,6 @@ private func helper() -> String {
 
 Some notes:
 
+* `MutableProperty`s back all of our inputs. If the input doesn’t take arguments 
 * It is acceptable to omit spaces between input functions and mutable properties.
 * 
