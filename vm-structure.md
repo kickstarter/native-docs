@@ -1,6 +1,5 @@
-There is a standard template we use for our view models in both Java and Swift. This helps
-use not worry about stylistc decisions and have a well-defined place to put protocols,
-methods, etc.
+There is a standard template we use for our view models in both Java and Swift. This helps use not worry about stylistc 
+decisions and have a well-defined place to put protocols, methods, etc.
 
 ## Java
 
@@ -46,7 +45,7 @@ internal final class ViewModel: ViewModelType, ViewModelInputs, ViewModelOutputs
   
   // {Implementation of interfaces at the bottom of the view model.}
   
-  // {Decleration of all input functions and the `MutableProperty`s that back them.}
+  // {Declaration of all input functions and the `MutableProperty`s that back them.}
   
   private let projectProperty = MutableProperty<Project?>(nil)
   internal func configureWith(project project: Project) {
@@ -57,11 +56,11 @@ internal final class ViewModel: ViewModelType, ViewModelInputs, ViewModelOutputs
     self.viewDidLoadProperty.value = ()
   }
   
-  // {Decleration of all output signals}
+  // {Declaration of all output signals}
   
   internal let creatorName: Signal<String, NoError> { get }
   
-  // {Decleration of inputs/outputs}
+  // {Declaration of inputs/outputs}
   
   internal var inputs: ViewModelInputs { return self }
   internal var outputs: ViewModelOutputs { return self }
@@ -76,6 +75,18 @@ private func helper() -> String {
 
 Some notes:
 
-* `MutableProperty`s back all of our inputs. If the input doesn’t take arguments 
-* It is acceptable to omit spaces between input functions and mutable properties.
-* 
+* Private `MutableProperty`s back all of our inputs. 
+  * If the input doesn’t take arguments you can use 
+  ```swift
+  private let inputProperty = MutableProperty()
+  ```
+  * If the input does take an argument, then you must declare the property as being generic over an optional type with its
+initial value set to `nil`:
+  ```swift
+  private let inputProperty = MutableProperty<Project?>(nil)
+  ```
+  * An exception to this is when there is an acceptable default, which iscan be dependent on the context of your view model:
+  ```swift
+  private let inputProperty = MutableProperty<String>("")
+  ```
+* It is acceptable to new lines between input functions and mutable properties.
