@@ -89,4 +89,4 @@ initial value set to `nil`:
   ```swift
   private let inputProperty = MutableProperty<String>("")
   ```
-* It is acceptable to new lines between input functions and mutable properties.
+* It is acceptable to remove new lines between input functions and mutable properties.
