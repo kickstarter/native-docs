@@ -85,7 +85,8 @@ initial value set to `nil`:
   ```swift
   private let inputProperty = MutableProperty<Project?>(nil)
   ```
-  * An exception to this is when there is an acceptable default, which iscan be dependent on the context of your view model:
+  * An exception to this is when there is an acceptable default, depending on what the input means for the problem you 
+  are modeling.
   ```swift
   private let inputProperty = MutableProperty<String>("")
   ```
