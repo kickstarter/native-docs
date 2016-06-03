@@ -91,3 +91,5 @@ initial value set to `nil`:
   private let inputProperty = MutableProperty<String>("")
   ```
 * It is acceptable to remove new lines between input functions and mutable properties.
+
+* Always use `self` when refering to instance variables.
