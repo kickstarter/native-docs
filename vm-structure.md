@@ -88,7 +88,7 @@ initial value set to `nil`:
   * An exception to this is when there is an acceptable default, depending on what the input means for the problem you 
   are modeling.
   ```swift
-  private let inputProperty = MutableProperty<String>("")
+  private let inputProperty = MutableProperty("")
   ```
 * It is acceptable to remove new lines between input functions and mutable properties.
 
