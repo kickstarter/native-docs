@@ -11,7 +11,7 @@ import Models
 import ReactiveCocoa
 import Result
 
-internal protocol ViewModelInputs {
+public protocol ViewModelInputs {
   // {Alphabetized list of input functions with documentation}
   
   /// Call with the project supplied to the view.
@@ -21,23 +21,23 @@ internal protocol ViewModelInputs {
   func viewDidLoad()
 }
 
-internal protocol ViewModelOutputs {
+public protocol ViewModelOutputs {
   // {Alphabetized list of output signals with documentation}
   
   /// Emits the creator's name.
   var creatorName: Signal<String, NoError> { get }
 }
 
-internal protocol ViewModelType {
+public protocol ViewModelType {
   var inputs: ViewModelInputs { get }
   var outputs: ViewModelOutputs { get }
 }
 
-internal final class ViewModel: ViewModelType, ViewModelInputs, ViewModelOutputs {
+public final class ViewModel: ViewModelType, ViewModelInputs, ViewModelOutputs {
 
   // {Constructor of the view model at the top.}
   
-  internal init() {
+  public init() {
     // {Assign all outputs in terms of the inputs.}
    
     self.creatorName = self.projectProperty.ignoreNil().map { $0.creator.name }
@@ -48,22 +48,22 @@ internal final class ViewModel: ViewModelType, ViewModelInputs, ViewModelOutputs
   // {Declaration of all input functions and the `MutableProperty`s that back them.}
   
   private let projectProperty = MutableProperty<Project?>(nil)
-  internal func configureWith(project project: Project) {
+  public func configureWith(project project: Project) {
     self.projectProperty.value = project
   }
   private let viewDidLoadProperty = MutableProperty()
-  internal func viewDidLoad() {
+  public func viewDidLoad() {
     self.viewDidLoadProperty.value = ()
   }
   
   // {Declaration of all output signals}
   
-  internal let creatorName: Signal<String, NoError> { get }
+  public let creatorName: Signal<String, NoError> { get }
   
   // {Declaration of inputs/outputs}
   
-  internal var inputs: ViewModelInputs { return self }
-  internal var outputs: ViewModelOutputs { return self }
+  public var inputs: ViewModelInputs { return self }
+  public var outputs: ViewModelOutputs { return self }
 }
 
 // {Private helper methods (optional) at the bottom of the file.}
