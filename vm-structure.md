@@ -34,9 +34,10 @@ public interface MyViewModel {
       this.creatorNameTextViewText = this.project.map(p -> p.creator.name);
     }
     
-    // {Private helper methods (optional) before implementtion of interfaces.}
+    // {Private helper methods (optional) before implementation of interfaces.}
+    // {Private helpers should be `static`; they should be passed all the data they need to do work}
     
-    private @NonNull String helper() {
+    private static @NonNull String helper() {
       return "Hello";
     }
     
