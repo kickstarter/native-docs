@@ -1,7 +1,87 @@
-There is a standard template we use for our view models in both Java and Swift. This helps use not worry about stylistc 
-decisions and have a well-defined place to put protocols, methods, etc.
+There is a standard template we use for our view models in both Java and Swift. This helps us not worry about stylistc 
+decisions and have a well-defined place to put protocols, methods, interfaces, etc.
 
 ## Java
+```java
+// {List of imports}
+
+public interface MyViewModel {
+
+  interface Inputs {
+    /** {Alphabetized list of input functions with documentation} */
+    
+    /** Call to configure the view model with a project. */
+    void configureWith(Project project);
+
+    /** Call when the next page has been invoked. */
+    void nextPage();
+  }
+  
+  interface Outputs {
+    /** {Alphabetized list of output observables with documentation} */
+  
+    /** Emits the creator name to be displayed. */
+    Observable<String> creatorNameTextViewText();
+  }
+  
+  final class ViewModel extends ActivityViewModel<MyActivity> implements Inputs, Outputs {
+  
+    // {Constructor of the view model at the top.}
+    
+    public ViewModel(final @NonNull Environment environment) { 
+      super(environment);
+       
+      this.creatorNameTextViewText = this.project.map(p -> p.creator.name);
+    }
+    
+    // {Private helper methods (optional) before implementation of interfaces.}
+    // {Private helpers should be `static`; they should be passed all the data they need to do work}
+    
+    private static @NonNull String helper() {
+      return "Hello";
+    }
+    
+    // {Implementation of interfaces at the bottom of the view model.}
+  
+    // {Alphabetized declaration of all input `PublishSubject`s.}
+    
+    private final PublishSubject<Void> nextPage = PublishSubject.create();
+    private final PublishSubject<Project> project = PublishSubject.create();
+    
+    // {Alphabetized declaration of all output observables.}
+    
+    private final Observable<String> creatorNameTextViewText;
+    
+    // {Declaration of inputs/outputs}
+    
+    public final Inputs inputs = this;
+    public final Outputs outputs = this;
+    
+    // {Alphabetized declaration of all input functions.}
+    
+    @Override public void configureWith(final @NonNull Project project) {
+      this.project.onNext(project);
+    }
+    @Override public void nextPage() {
+      this.nextPage.onNext(null);
+    }
+
+    // {Alphabetized declaration of all output functions.}
+    
+    @Override public @NonNull Observable<String> creatorNameTextViewText() {
+      return this.creatorNameTextViewText;
+    }
+  }
+}
+```
+
+Some notes:
+
+* The ViewModel for an activity should be the name of the activity appended with ViewModel, e.g. `MessagesActivity` has a `MessagesViewModel`
+* The ViewModel for a view holder should be the name of the view holder appended with HolderViewModel, e.g. `MessageViewHolder` has a `MessageHolderViewModel`
+* It is acceptable to remove new lines between input and output functions.
+* Always use `this` when refering to instance variables.
+
 
 ## Swift
 
@@ -45,7 +125,7 @@ public final class ViewModel: ViewModelType, ViewModelInputs, ViewModelOutputs {
   
   // {Implementation of interfaces at the bottom of the view model.}
   
-  // {Declaration of all input functions and the `MutableProperty`s that back them.}
+  // {Alphabetized declaration of all input functions and the `MutableProperty`s that back them.}
   
   private let projectProperty = MutableProperty<Project?>(nil)
   public func configureWith(project project: Project) {
@@ -56,7 +136,7 @@ public final class ViewModel: ViewModelType, ViewModelInputs, ViewModelOutputs {
     self.viewDidLoadProperty.value = ()
   }
   
-  // {Declaration of all output signals}
+  // {Alphabetized declaration of all output signals}
   
   public let creatorName: Signal<String, NoError> { get }
   
