@@ -8,7 +8,8 @@ Run the command `make deploy` to deploy `private/master` to Hockey.
 
 ### App Store Deployment
 
-Run the command `RELEASE=itunes make deploy` to deploy `private/master` to iTunes connect.
+1. Bump the version number in Xcode and commit (build number is set automatically).
+2. Run the command `RELEASE=itunes make deploy` to deploy `private/master` to iTunes connect.
 
 ### iTunes connect
 
