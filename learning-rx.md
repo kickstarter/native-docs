@@ -11,6 +11,8 @@ Here are some of our favorite resources for learning FRP:
 * [RxMarbles](http://rxmarbles.com/) to help visualize different rx operators
 * [Why Functional Programming Matters](http://weblog.raganwald.com/2007/03/why-why-functional-programming-matters.html) 
 blog post
+* [Learn You a Haskell for Great Good!](http://learnyouahaskell.com/chapters): you don't need to program in Haskell to
+work on our apps, but this book is a great resource for deeper understanding of our often-used operators
 
 ## Android specific
 * [FRP on Android with RxJava](http://mttkay.github.io/blog/2013/08/25/functional-reactive-programming-on-android-with-rxjava/)
