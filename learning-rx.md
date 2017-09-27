@@ -18,4 +18,6 @@ work on our apps, but this book is a great resource for deeper understanding of 
 * [FRP on Android with RxJava](http://mttkay.github.io/blog/2013/08/25/functional-reactive-programming-on-android-with-rxjava/)
 
 ## iOS specific
+* [Functional Programming in a Playground](https://youtu.be/estNbh2TF3E) talk by Brandon Williams
 * [Lisa & Gina's TDD talk](https://www.youtube.com/watch?v=EpTlqx6NjYo) at Functional Swift Conference, 2016 
+* [ViewModels at Kickstarter](https://talk.objc.io/episodes/S01E47-view-models-at-kickstarter) Swift Talk
