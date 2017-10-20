@@ -44,7 +44,7 @@ PLATFORM ?= iOS
 OS ?= 11.0.1
 ```
 
-In `./fastlane/FastFile` update the Xcode version used to compile for deployment:
+In `.fastlane/FastFile` update the Xcode version used to compile for deployment:
 ```ruby
 before_all do
   xcversion(version: "9.0.1")
