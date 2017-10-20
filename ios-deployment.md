@@ -37,7 +37,7 @@ test:
 ```
 
 In the `Makefile`, update the simulator version used to run tests:
-```yaml
+```bash
 SCHEME ?= $(TARGET)-$(PLATFORM)
 TARGET ?= Kickstarter-Framework
 PLATFORM ?= iOS
