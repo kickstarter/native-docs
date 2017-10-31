@@ -17,6 +17,40 @@ bash/zsh:
 fish:  
 `env RELEASE=itunes make deploy`
 
+### Common Issues
+
+CircleCI, our CI provider, often updates Xcode and that breaks our builds and deployments. This usually involves the following changes on our side:
+
+In `circle.yml`:
+Select the new Xcode version:
+```yaml
+machine:
+  xcode:
+    version: "9.0.1"
+```
+
+Select the simulator version to startup:
+```yaml
+test:
+  pre:
+    - xcrun instruments -w 'iPhone 8 (11.0.1) [9F8B48EF-912E-499E-9874-4CCF692178B3]' || true
+```
+
+In the `Makefile`, update the simulator version used to run tests:
+```bash
+SCHEME ?= $(TARGET)-$(PLATFORM)
+TARGET ?= Kickstarter-Framework
+PLATFORM ?= iOS
+OS ?= 11.0.1
+```
+
+In `.fastlane/FastFile` update the Xcode version used to compile for deployment:
+```ruby
+before_all do
+  xcversion(version: "9.0.1")
+end
+```
+
 ### iTunes connect
 
 todo
