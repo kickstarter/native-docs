@@ -26,14 +26,14 @@ Select the new Xcode version:
 ```yaml
 machine:
   xcode:
-    version: "9.1"
+    version: "9.2"
 ```
 
 Select the simulator version to startup:
 ```yaml
 test:
   pre:
-    - xcrun instruments -w 'iPhone 8 (11.1) [9F8B48EF-912E-499E-9874-4CCF692178B3]' || true
+    - xcrun instruments -w 'iPhone 8 (11.2) [9F8B48EF-912E-499E-9874-4CCF692178B3]' || true
 ```
 
 In the `Makefile`, update the simulator version used to run tests:
@@ -41,13 +41,13 @@ In the `Makefile`, update the simulator version used to run tests:
 SCHEME ?= $(TARGET)-$(PLATFORM)
 TARGET ?= Kickstarter-Framework
 PLATFORM ?= iOS
-OS ?= 11.1
+OS ?= 11.2
 ```
 
 In `.fastlane/FastFile` update the Xcode version used to compile for deployment:
 ```ruby
 before_all do
-  xcversion(version: "9.1")
+  xcversion(version: "9.2")
 end
 ```
 
