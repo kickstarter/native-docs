@@ -9,7 +9,7 @@ Run the command `make deploy` to deploy `private/master` to Hockey.
 ### App Store Deployment
 
 1. Bump the version number in Xcode and commit (build number is set automatically).
-2. Deploy `private/master` to iTunes connect by running the following command:
+1. Deploy `private/master` to iTunes connect by running the following command:
 
 bash/zsh:  
 `RELEASE=itunes make deploy`
@@ -24,33 +24,26 @@ CircleCI, our CI provider, often updates Xcode and that breaks our builds and de
 In `circle.yml`:
 Select the new Xcode version:
 ```yaml
-machine:
-  xcode:
-    version: "9.2"
+xcode_version: &xcode_version 9.3
+...
+base_job: &base_job
+  macos:
+    xcode: "9.3.0"
 ```
 
 Select the simulator version to startup:
 ```yaml
-test:
-  pre:
-    - xcrun instruments -w 'iPhone 8 (11.2) [9F8B48EF-912E-499E-9874-4CCF692178B3]' || true
+preload_simulator: &preload_simulator xcrun instruments -w 'iPhone 8 (11.3) [5FEDB80B-4688-4334-8B56-77D413CF00DC]' || true
 ```
 
-In the `Makefile`, update the simulator version used to run tests:
-```bash
-SCHEME ?= $(TARGET)-$(PLATFORM)
-TARGET ?= Kickstarter-Framework
-PLATFORM ?= iOS
-OS ?= 11.2
-```
+### Fastlane match
 
-In `.fastlane/FastFile` update the Xcode version used to compile for deployment:
-```ruby
-before_all do
-  xcversion(version: "9.2")
-end
-```
+We use `fastlane match` to manage our certificates and provisioning profiles. CircleCI 2.0 also requires that we use `match`. All that you need to do is run `bundle exec fastlane match_all` in the project folder, however if you have not run this before then follow these steps:
 
-### iTunes connect
+1. run `bundle install`
+1. run `bundle exec fastlane match_all`
+1. If prompted for Xcode version to select, enter the current version (this is passed by an environment var on CircleCI)
+1. When asked for the passphrase to decode the certificates, use `Fastlane match passphrase` found in 1Password in the Native Squad vault
+1. You will also be prompted for the password for `appledev@kickstarter.com`, this is in the vault too.
 
-todo
+**Note**: This should be run any time you have trouble with codesigning or if any of the provisioning profiles change, e.g. if a new device is added.
