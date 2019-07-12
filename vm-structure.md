@@ -1,4 +1,4 @@
-There is a standard template we use for our view models in both Java and Swift. This helps us not worry about stylistc 
+There is a standard template we use for our view models in both Java and Swift. This helps us not worry about stylistic 
 decisions and have a well-defined place to put protocols, methods, interfaces, etc.
 
 ## Java
