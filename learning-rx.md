@@ -21,4 +21,4 @@ work on our apps, but this book is a great resource for deeper understanding of 
 * [Functional Programming in a Playground](https://youtu.be/estNbh2TF3E) talk by Brandon Williams
 * [Lisa & Gina's TDD talk](https://www.youtube.com/watch?v=EpTlqx6NjYo) at Functional Swift Conference, 2016 
 * [ViewModels at Kickstarter](https://talk.objc.io/episodes/S01E47-view-models-at-kickstarter) Swift Talk
-* [ReactiveSwift on Slack](https://reactiveswift.herokuapp.com/) a useful place to discuss and ask questions about ReactiveSwift.
+* [ReactiveSwift on Slack](http://reactivecocoa.io/slack/) a useful place to discuss and ask questions about ReactiveSwift.
